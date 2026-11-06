@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gmdveast/finance-flux/schemas/connector-profile-v1.json",
+  "title": "Finance Flux connector profile v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "connectorId", "packageName", "name", "accountId", "enabled"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$" },
+    "connectorId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$" },
+    "packageName": { "type": "string", "pattern": "^[A-Za-z][A-Za-z0-9_]*(?:\\.[A-Za-z][A-Za-z0-9_]*)+$", "maxLength": 255 },
+    "name": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "accountId": { "type": "integer", "minimum": 5, "maximum": 104 },
+    "defaultExpenseCategory": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "defaultIncomeCategory": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "enabled": { "type": "boolean" }
+  }
+}

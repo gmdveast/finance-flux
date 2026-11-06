@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:allowBackup="false"
+        android:label="Finance Flux Test Connector"
+        android:supportsRtl="true">
+        <service
+            android:name=".SyntheticConnectorService"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.gmdveast.financeflux.CONNECTOR_SERVICE" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>

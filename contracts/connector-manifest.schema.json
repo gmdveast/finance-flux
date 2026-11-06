@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gmdveast/finance-flux/schemas/connector-manifest-v1.json",
+  "title": "Finance Flux connector manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "connectorId", "displayName", "minIpcVersion", "maxIpcVersion", "capabilities"],
+  "properties": {
+    "schema": { "const": 1 },
+    "connectorId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$" },
+    "displayName": { "type": "string", "minLength": 1, "maxLength": 100 },
+    "minIpcVersion": { "type": "integer", "minimum": 1 },
+    "maxIpcVersion": { "type": "integer", "minimum": 1 },
+    "capabilities": {
+      "type": "array",
+      "uniqueItems": true,
+      "maxItems": 3,
+      "items": { "enum": ["income", "expense", "transfer"] }
+    }
+  }
+}

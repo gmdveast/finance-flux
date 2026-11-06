@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/gmdveast/finance-flux/schemas/connector-candidate-v1.json",
+  "title": "Finance Flux normalized connector candidate v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["candidateId", "date", "type", "amount", "currency"],
+  "properties": {
+    "candidateId": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{5,127}$" },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "pattern": "^(?:19\\d{2}|[2-9]\\d{3})-\\d{2}-\\d{2}$"
+    },
+    "type": { "enum": ["Доход", "Расход", "Перевод"] },
+    "amount": { "type": "number", "exclusiveMinimum": 0, "maximum": 100000000, "multipleOf": 0.000001 },
+    "currency": { "type": "string", "pattern": "^[A-Z]{3}$" },
+    "notes": { "type": "string", "maxLength": 500 },
+    "destinationAccountId": { "type": "integer", "minimum": 5, "maximum": 104 },
+    "destinationAmount": { "type": "number", "exclusiveMinimum": 0, "maximum": 100000000, "multipleOf": 0.000001 }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "type": { "const": "Перевод" } } },
+      "then": { "required": ["destinationAccountId", "destinationAmount"] },
+      "else": { "not": { "anyOf": [{ "required": ["destinationAccountId"] }, { "required": ["destinationAmount"] }] } }
+    }
+  ]
+}

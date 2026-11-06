@@ -1,0 +1,16 @@
+.gradle/
+.kotlin/
+.android/
+**/build/
+local.properties
+*.jks
+*.keystore
+*.apk
+*.aab
+captures/
+.idea/
+*.log
+android-user-home/
+gradle-home/
+toolchain/
+artifacts/
